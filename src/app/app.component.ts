@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'b2w-app';
+
+  public selectedDate: Date;
+
+  constructor() {
+    this.selectedDate = new Date();
+  }
+
+  public onDateChanged(date: Date): void {
+    this.selectedDate = date;
+  }
 }
