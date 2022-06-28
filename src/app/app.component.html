@@ -1,7 +1,17 @@
-<h1>B2W App</h1>
+<h1>{{ title }}</h1>
 
 <p>Best Date Picker</p>
-<lib-datepicker [dateValue]="selectedDate" (dateChanged)="onDateChanged($event)">
-</lib-datepicker>
+
+<div>
+  <section style="display: flex; align-items: center;">
+    <h3>Selected Date:</h3>
+    <p style="margin-left: 10px;">{{selectedDate$ | async | date}}</p>
+  </section>
+
+  <ng-container *ngIf="selectedDate$ | async as date">
+    <lib-datepicker [dateValue]="date" (dateChanged)="onDateChanged($event)">
+    </lib-datepicker>
+  </ng-container>
+</div>
 
 <lib-core-components></lib-core-components>

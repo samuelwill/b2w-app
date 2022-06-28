@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,15 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'b2w-app';
+  public title = 'b2w-app';
 
-  public selectedDate: Date;
-
-  constructor() {
-    this.selectedDate = new Date();
-  }
+  private selectedDateSubject = new BehaviorSubject<Date>(new Date());
+  public selectedDate$ = this.selectedDateSubject.asObservable();
 
   public onDateChanged(date: Date): void {
-    this.selectedDate = date;
+    this.selectedDateSubject.next(date);
   }
 }
